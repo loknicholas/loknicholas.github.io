@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicholas Lok | Digital Marketing & Social Media</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@300;400;500;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --theme-black: #1b1b1b; 
+            --theme-orange: #ffa31a; 
+            --theme-white: #ffffff; 
+            --bg-color: #1b1b1b; 
+            --text-main: #ffffff; 
+        }
+
+        html {
+            scroll-padding-top: 70px; 
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth; 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* 导航栏 */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px; 
+            padding: 0 50px;
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            background: #1b1b1b; 
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.9);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px; 
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--theme-white); 
+            font-family: 'Poppins', sans-serif; 
+            font-weight: 400; 
+            font-size: 0.76rem; 
+            text-transform: uppercase;
+            transition: all 0.3s ease; 
+        }
+
+        .nav-links a:hover {
+            color: var(--theme-orange);
+            transform: scale(1.1); 
+        }
+
+        .desktop-only {
+            display: inline;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s cubic-bezier(0.5, 0, 0, 1), transform 0.6s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 第一页 (About Me Section) - 电脑端 */
+        #about {
+            position: relative;
+            height: 100vh; 
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 10%;
+            /* 电脑端16:9 背景图替换位置 */
+            background: linear-gradient(
+                to right, 
+                rgba(0, 0, 0, 0.6) 0%, 
+                rgba(0, 0, 0, 0.2) 50%,
+                rgba(0, 0, 0, 0) 100%
+            ), url('Screenshot_20260928_002853_.jpg'); 
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        .hero-title {
+            font-family: 'Oswald', sans-serif; 
+            font-size: 5.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.5); 
+        }
+
+        .hero-title .greeting {
+            display: block;
+            color: var(--theme-white);
+            font-size: 0.65em; 
+            font-weight: 500;
+        }
+
+        .hero-title .name {
+            display: block;
+            color: var(--theme-orange);
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.05rem;
+            color: var(--theme-white);
+            max-width: 580px;
+            line-height: 1.8;
+            font-weight: 300;
+            text-shadow: 1px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        section.work-section {
+            padding: 30px 10% 40px 10%; 
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; 
+        }
+
+        #internship {
+            min-height: 100vh; 
+            background-color: var(--theme-black); 
+            position: relative;
+            z-index: 2;
+        }
+
+        #university {
+            min-height: 100vh; 
+            background-color: var(--theme-black); 
+            padding-bottom: 120px; 
+        }
+
+        #others {
+            min-height: calc(100vh - 80px); 
+            background-color: var(--theme-black); 
+            padding-bottom: 40px;
+        }
+
+        .section-header {
+            font-family: 'Oswald', sans-serif;
+            color: var(--theme-orange); 
+            border-left: 8px solid var(--theme-white); 
+            margin-bottom: 20px;
+            padding-left: 20px;
+            font-size: 2.2rem;
+        }
+        
+        .section-header span {
+            color: var(--theme-white); 
+            display: block; 
+            margin-top: 8px;
+            font-size: 1.1rem; 
+            font-family: 'Poppins', sans-serif; 
+            font-weight: 400; 
+            text-transform: none; 
+            letter-spacing: 0;
+        }
+
+        .section-description {
+            color: #d0d0d0;
+            font-family: 'Poppins', sans-serif; 
+            font-size: 0.95rem;
+            line-height: 1.8;
+            width: 100%;
+            margin-bottom: 25px; 
+            font-weight: 300;
+        }
+
+        .section-description p {
+            margin-bottom: 15px;
+        }
+        
+        .section-description p:last-child {
+            margin-bottom: 0; 
+        }
+
+        .grid-container {
+            display: grid;
+            gap: 20px; 
+            width: 100%;
+        }
+
+        .intern-grid { grid-template-columns: repeat(4, 1fr); }
+
+        .intern-card {
+            width: 82%; 
+            margin: 0 auto; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            color: var(--theme-white);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            padding: 0 5px;
+        }
+
+        .video-stats .stat {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            opacity: 0.85; 
+            font-weight: 400;
+        }
+
+        .video-card, .photo-card, .slider-wrapper {
+            background-color: #000; 
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4); 
+        }
+
+        #university .photo-card, 
+        #university .slider-wrapper {
+            border-radius: 0;
+            box-shadow: none !important;
+            background: transparent !important;
+        }
+
+        .video-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer; 
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(255, 163, 26, 0.2);
+        }
+
+        .video-card video, .photo-card img, .slider-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #000;
+        }
+
+        .vertical { padding-top: 177.77%; } 
+        .horizontal { padding-top: 56.25%; } 
+
+        video::-webkit-media-text-track-container { display: none; }
+
+        /* ================= 大学项目专属布局 ================= */
+        
+        .uni-custom-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 60px; 
+            width: 100%; 
+            max-width: 1900px; 
+            margin: 0 auto;
+        }
+
+        .uni-top-video-wrapper {
+            width: 85%;
+            margin: 0 auto;
+            margin-bottom: 0px; 
+        }
+
+        .uni-middle-row {
+            display: grid;
+            grid-template-columns: 2.4fr 1fr; 
+            gap: 40px;
+            align-items: flex-start; 
+            width: 99%; 
+            margin: 0 auto;
+        }
+
+        .slider-wrapper.ratio-1650-1275 {
+            width: 100%;
+            max-width: 100%;
+            aspect-ratio: 1650 / 1275;
+            height: auto;
+        }
+        .ratio-1650-1275 img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .uni-text-content {
+            color: #d0d0d0;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem; 
+            line-height: 1.85;
+            font-weight: 300;
+            padding-right: 10px;
+            padding-top: 0;
+        }
+
+        .uni-text-content p {
+            margin-bottom: 16px;
+        }
+
+        .uni-text-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .uni-bottom-row {
+            display: grid;
+            grid-template-columns: 3.2fr 1fr; 
+            gap: 40px; 
+            width: 99%; 
+            margin: 0 auto;
+        }
+        
+        .uni-bottom-left {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0px; 
+        }
+
+        .ratio-2355-4185 { padding-top: 177.7%; } 
+        .ratio-296-532   { padding-top: 179.72%; } 
+
+        @keyframes fadeSwitch {
+            0%, 45%   { opacity: 1; }
+            50%, 95%  { opacity: 0; }
+            100%      { opacity: 1; }
+        }
+
+        .top-slide {
+            animation: fadeSwitch 4s infinite ease-in-out;
+        }
+
+        /* ================= Others 区块样式 ================= */
+        
+        .others-layout {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            width: 100%;
+            height: 520px; 
+            margin-top: 20px;
+        }
+
+        .others-card-34 {
+            height: 100%;
+            aspect-ratio: 3 / 4;
+            background-color: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        .others-card-34.has-hover {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+        }
+
+        .others-card-34.has-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(255, 163, 26, 0.2);
+        }
+
+        .others-card-34 video, .others-card-34 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .others-card-long-slider {
+            height: 100%;
+            aspect-ratio: 1080 / 2201; 
+            background-color: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        .others-card-long-slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* ================= Footer 页脚样式 ================= */
+        footer {
+            width: 100%;
+            padding: 30px 10%;
+            background-color: #151515;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #888888;
+            font-size: 0.85rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        footer .footer-name {
+            color: var(--theme-orange);
+            font-weight: 600;
+        }
+
+        /* ================= 专门针对手机端的 CSS 响应式适配 ================= */
+        @media (max-width: 768px) {
+            
+            nav { padding: 0 15px; }
+            .nav-links { gap: 18px; }
+            .nav-links a { font-size: 0.72rem; }
+            .desktop-only { display: none !important; }
+
+            /* 1. 第一页 (About Me) 手机端：单独设置 3:4 背景图 URL，Description 左对齐 */
+            #about {
+                padding: 0 6%;
+                /* 手机端 3:4 背景图替换位置 */
+                background: linear-gradient(
+                    to right, 
+                    rgba(0, 0, 0, 0.85) 0%, 
+                    rgba(0, 0, 0, 0.45) 55%,
+                    rgba(0, 0, 0, 0) 100%
+                ), url('Screenshot.jpg'); 
+                background-size: cover;
+                background-position: center right;
+            }
+            .hero-title { 
+                font-size: 2.85rem; 
+                line-height: 1.15; 
+                margin-bottom: 14px; 
+                width: fit-content;
+                max-width: 60%;
+            }
+            .hero-title .greeting { font-size: 0.55em; }
+            .hero-subtitle { 
+                font-size: 0.65rem; 
+                line-height: 1.6; 
+                width: fit-content;
+                max-width: 58%; 
+                text-align: left; /* 向左对齐 */
+            }
+
+            /* 2. University Project 手机端间距精准微调 */
+            #university { padding-bottom: 60px; }
+            
+            /* 中间轮播图与下方 3+1 照片组的垂直间距设定为 50px */
+            .uni-custom-layout { gap: 50px; } 
+            
+            .uni-top-video-wrapper { width: 100%; }
+            
+            /* Top Video 与 Description 距离收紧为 15px，Description 与 中间轮播图 距离设定为 40px */
+            .uni-middle-row { 
+                display: flex; 
+                flex-direction: column-reverse; 
+                gap: 40px; 
+            }
+            .uni-text-content { 
+                padding-right: 0; 
+                font-size: 0.76rem; 
+                line-height: 1.65; 
+                margin-top: -35px; /* 精准收缩与上方 Top Video 之间的间距至 15px */
+            }
+            .uni-text-content p { margin-bottom: 12px; }
+            
+            /* 手机端 3+1 布局：前 3 张固定照片与 +1 竖版轮播图之间距离设为 50px */
+            .uni-bottom-row { 
+                display: flex; 
+                flex-direction: column; 
+                gap: 50px; 
+            }
+            
+            /* 3张固定照片彼此之间的距离降至 5px */
+            .uni-bottom-left { 
+                display: flex;
+                flex-direction: column; 
+                gap: 5px; 
+                width: 100%;
+            }
+            .uni-bottom-left .photo-card {
+                width: 100%;
+            }
+            .ratio-296-532 { width: 100%; aspect-ratio: 296 / 532; height: auto; }
+
+            /* 其他板块手机端通用设置 */
+            section.work-section { padding: 20px 6% 40px 6%; }
+            .section-header { font-size: 1.76rem; margin-bottom: 15px; padding-left: 15px; border-left-width: 8px; }
+            .section-header span { font-size: 0.88rem; }
+            .section-description { font-size: 0.76rem; margin-bottom: 20px; line-height: 1.65; max-width: 100%; }
+
+            .intern-grid { grid-template-columns: 1fr; gap: 30px; }
+            .intern-card { width: 100%; }
+            .video-stats { font-size: 0.85rem; }
+
+            #others { height: auto; min-height: 100vh; overflow: visible; padding-bottom: 60px; }
+            .others-layout {
+                display: flex;
+                flex-direction: column;
+                height: auto;
+                gap: 30px;
+                margin-top: 10px;
+            }
+            .others-card-34, 
+            .others-card-long-slider {
+                width: 100%;
+                height: auto; 
+                flex: none;
+            }
+            .others-card-34 { aspect-ratio: 3 / 4; }
+            .others-card-long-slider { aspect-ratio: 1080 / 2201; }
+
+            footer {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                gap: 12px;
+                padding: 20px 10%;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <nav>
+        <div class="nav-links">
+            <a href="#about">About Me</a>
+            <a href="#internship">Internship<span class="desktop-only"> Work</span></a>
+            <a href="#university">University<span class="desktop-only"> Project</span></a>
+            <a href="#others">Others</a>
+        </div>
+    </nav>
+
+    <!-- 第一页：About Me Section -->
+    <section id="about">
+        <h1 class="hero-title reveal" style="transition-delay: 0s;">
+            <span class="greeting">Hi, I am</span>
+            <span class="name">Nicholas</span>
+        </h1>
+        <p class="hero-subtitle reveal" style="transition-delay: 0.3s;">
+            Advertising graduate & Digital Marketing Specialist driven by a content creator mindset and video production expertise.<br><br>
+            From high-performing brand reels at IPAO Media to strategic university campaigns and hands-on e-commerce growth, I bridge visual storytelling with platform dynamics. Explore my journey below starting with Internship Works, University Projects, and creative explorations.
+        </p>
+    </section>
+
+    <!-- 第二页：实习作品 -->
+    <section id="internship" class="work-section">
+        <h2 class="section-header reveal" style="transition-delay: 0s;">Internship Works<br>
+            <span class="reveal" style="transition-delay: 0.3s;">IPAO MEDIA & ONE TWO ZOOM</span>
+        </h2>
+        
+        <div class="section-description reveal" style="transition-delay: 0.4s;">
+            <p>During my internship at IPAO Media, I handled the entire content creation process. I didn't just shoot and edit; I talked directly with merchants to understand their goals, brainstormed ideas, and planned the shoots. My shooting and editing skills are above the basic level, allowing me to create high-quality videos. After posting, I always analyze backend data to figure out what "hooks" work best. I believe a great content creator must combine creative ideas, solid production skills, and data analysis. Below are some of the videos I produced during my internship. They achieved excellent views, likes, and shares on social media.</p>
+        </div>
+
+        <div class="grid-container intern-grid">
+            <!-- 影片 1 -->
+            <div class="reveal" style="transition-delay: 0.6s;">
+                <div class="intern-card">
+                    <div class="video-card vertical">
+                        <video src="Lot10.mp4" loop playsinline controls></video>
+                    </div>
+                    <div class="video-stats">
+                        <div class="stat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> 800k+</div>
+                        <div class="stat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg> 15k+</div>
+                        <div class="stat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 14 20 9 15 4"></polyline><path d="M4 20v-7a4 4 0 0 1 4-4h12"></path></svg> 3k+</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 影片 2 -->
+            <div class="reveal" style="transition-delay: 0.8s;">
+                <div class="intern-card">
+                    <div class="video-card vertical">
+                        <video src="Fipper.mp4" loop playsinline controls></video>
+                    </div>
+                    <div class="video-stats">
+                        <div class="stat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> 12k+</div>
+                        <div class="stat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg> 200+</div>
+                        <div class="stat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 14 20 9 15 4"></polyline><path d="M4 20v-7a4 4 0 0 1 4-4h12"></path></svg> 200+</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 影片 3 -->
+            <div class="reveal" style="transition-delay: 1.0s;">
+                <div class="intern-card">
+                    <div class="video-card vertical">
+                        <video src="Dayana.mp4" loop playsinline controls></video>
+                    </div>
+                    <div class="video-stats">
+                        <div class="stat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> 73k+</div>
+                        <div class="stat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg> 4k+</div>
+                        <div class="stat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 14 20 9 15 4"></polyline><path d="M4 20v-7a4 4 0 0 1 4-4h12"></path></svg> 1k+</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 影片 4 -->
+            <div class="reveal" style="transition-delay: 1.2s;">
+                <div class="intern-card">
+                    <div class="video-card vertical">
+                        <video src="Alif.mp4" loop playsinline controls></video>
+                    </div>
+                    <div class="video-stats">
+                        <div class="stat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> 1.7m+</div>
+                        <div class="stat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg> 69k+</div>
+                        <div class="stat"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 14 20 9 15 4"></polyline><path d="M4 20v-7a4 4 0 0 1 4-4h12"></path></svg> 1k+</div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- 第三页：大学作品 -->
+    <section id="university" class="work-section">
+        <h2 class="section-header reveal" style="transition-delay: 0s;">University Projects<br>
+            <span class="reveal" style="transition-delay: 0.3s;">XIAMEN UNIVERSITY MALAYSIA</span>
+        </h2>
+        
+        <div class="uni-custom-layout">
+            
+            <div class="uni-top-video-wrapper reveal" style="transition-delay: 0.2s;">
+                <div class="video-card horizontal">
+                    <video src="Compasia.mp4" loop playsinline controls></video>
+                </div>
+            </div>
+
+            <div class="uni-middle-row">
+                <div class="slider-wrapper ratio-1650-1275 reveal" style="transition-delay: 0.4s;">
+                    <img src="Brochure_page-0001.jpg" alt="University Project Photo 1" class="bottom-slide">
+                    <img src="Brochure_page-0002.jpg" alt="University Project Photo 2" class="top-slide">
+                </div>
+                <div class="uni-text-content reveal" style="transition-delay: 0.6s;">
+                    <p>For this university assignment in close collaboration with Compasia, I proudly served as the team leader, guiding my peers to successfully produce a compelling, story-driven commercial video. I handled everything hands-on from initial concept development to shooting, editing, and sound design.</p>
+                    <p>Beyond video production, I am deeply passionate about exploring diverse creative fields. While my practical skills in editing, Adobe Illustrator, and InDesign sit comfortably above the basic level rather than strictly expert, I love transforming strategic concepts into tangible realities from designing intricate fashion brochures to crafting custom menus and professional business cards. Driven by a keen aesthetic sense, strong platform intuition, and an open mindset, I am continually eager to learn and expand my multi-disciplinary creative expertise.</p>
+                </div>
+            </div>
+
+            <!-- 手机端单列呈现 1、2、3 照片（间距5px），以及第 4 张轮播图 -->
+            <div class="uni-bottom-row">
+                <div class="uni-bottom-left reveal" style="transition-delay: 0.8s;">
+                    <div class="photo-card ratio-2355-4185">
+                        <img src="Menu_page-0001.jpg" alt="Vertical Photo 1">
+                    </div>
+                    <div class="photo-card ratio-2355-4185">
+                        <img src="Menu_page-0002.jpg" alt="Vertical Photo 2">
+                    </div>
+                    <div class="photo-card ratio-2355-4185">
+                        <img src="Menu_page-0003.jpg" alt="Vertical Photo 3">
+                    </div>
+                </div>
+                
+                <div class="slider-wrapper ratio-296-532 reveal" style="transition-delay: 1.0s;">
+                    <img src="Name%20Card_page-0001.jpg" alt="Vertical Slider Photo 1" class="bottom-slide">
+                    <img src="Name%20Card_page-0002.jpg" alt="Vertical Slider Photo 2" class="top-slide">
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- 第四页：Others -->
+    <section id="others" class="work-section">
+        
+        <h2 class="section-header reveal" style="transition-delay: 0s;">Others<br>
+            <span class="reveal" style="transition-delay: 0.2s;">CREATIVE EXPLORATIONS & E-COMMERCE PRACTICES</span>
+        </h2>
+        
+        <div class="section-description reveal" style="transition-delay: 0.3s;">
+            <p>As an Advertising student, I actively embrace the creator mindset by producing lifestyle Vlogs, tournament highlights, and humorous sports content that drive organic audience engagement. My passion for visual storytelling extends to photography, where my work was recognized at Xiamen University Malaysia's 7th Stellar Prize with nominations for "Most Popular Photo" and "Best Portraiture."</p>
+            <p>On the commercial side, I manage e-commerce visuals and site maintenance for One Two Zoom. I design conversion-focused product images, refine website details, and produce algorithm-optimized Shopee video clips—leveraging complete listing strategies to naturally boost product visibility and store traffic.</p>
+        </div>
+        
+        <div class="others-layout">
+            
+            <div class="others-card-34 has-hover reveal" style="transition-delay: 0.4s;">
+                <video src="CHKL.mp4" loop playsinline controls></video>
+            </div>
+            
+            <div class="others-card-34 reveal" style="transition-delay: 0.6s;">
+                <img src="TSP.jpg" alt="Others Project Photo 1">
+            </div>
+
+            <div class="others-card-long-slider reveal" style="transition-delay: 0.8s;">
+                <img src="Shopee.jpg" alt="Long Photo 1" class="bottom-slide">
+                <img src="Web.jpg" alt="Long Photo 2" class="top-slide">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 页脚 Footer -->
+    <footer>
+        <div>Designed & Built by <span class="footer-name">Nicholas Lok</span></div>
+        <div>&copy; 2026 Nicholas Lok. All Rights Reserved.</div>
+    </footer>
+
+    <script>
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        };
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 50; 
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        
+        window.addEventListener("load", function() {
+            setTimeout(function() {
+                window.scrollTo(0, 0);
+                reveal();
+            }, 10);
+        });
+
+        // 智能视频管理：播放单视频控制与离屏自动暂停
+        const allVideos = document.querySelectorAll('video');
+
+        // 1. 监听视频播放，当播放某一个视频时，暂停其他正在播放的视频
+        allVideos.forEach(video => {
+            video.addEventListener('play', () => {
+                allVideos.forEach(otherVideo => {
+                    if (otherVideo !== video && !otherVideo.paused) {
+                        otherVideo.pause();
+                    }
+                });
+            });
+        });
+
+        // 2. 使用 IntersectionObserver 监听视口，当视频划出屏幕超一半时自动暂停
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const video = entry.target;
+                if (!entry.isIntersecting || entry.intersectionRatio < 0.3) {
+                    if (!video.paused) {
+                        video.pause();
+                    }
+                }
+            });
+        }, {
+            threshold: [0, 0.3, 0.5, 1.0]
+        });
+
+        allVideos.forEach(video => {
+            videoObserver.observe(video);
+        });
+
+        // 悬停交互兼容
+        const videoCards = document.querySelectorAll('.video-card, .others-card-34.has-hover');
+        videoCards.forEach(card => {
+            const video = card.querySelector('video');
+            if (video) {
+                card.addEventListener('mouseenter', () => {
+                    video.play().catch(() => {});
+                });
+                card.addEventListener('mouseleave', () => {
+                    video.pause();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
